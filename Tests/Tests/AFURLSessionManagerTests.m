@@ -157,7 +157,7 @@
                               object:nil
                              handler:nil];
     NSURL *delayURL = [self.baseURL URLByAppendingPathComponent:@"delay/1"];
-    NSURLSessionUploadTask *task = [self.manager downloadTaskWithRequest:[NSURLRequest requestWithURL:delayURL]
+    NSURLSessionDownloadTask *task = [self.manager downloadTaskWithRequest:[NSURLRequest requestWithURL:delayURL]
                                                                 progress:nil
                                                              destination:nil
                                                        completionHandler:nil];
@@ -172,7 +172,7 @@
                               object:nil
                              handler:nil];
     NSURL *delayURL = [self.baseURL URLByAppendingPathComponent:@"delay/1"];
-    NSURLSessionUploadTask *task = [self.manager downloadTaskWithRequest:[NSURLRequest requestWithURL:delayURL]
+    NSURLSessionDownloadTask *task = [self.manager downloadTaskWithRequest:[NSURLRequest requestWithURL:delayURL]
                                                                 progress:nil
                                                              destination:nil
                                                        completionHandler:nil];
