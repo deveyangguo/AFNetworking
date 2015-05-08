@@ -310,16 +310,11 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 @implementation _AFURLSessionTaskSwizzling
 
 + (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class urlSessionClass = [NSURLSessionTask class];
-        if (urlSessionClass) {
-            af_addMethod(urlSessionClass, @selector(af_resume),  class_getInstanceMethod(urlSessionClass, @selector(af_resume)));
-            af_addMethod(urlSessionClass, @selector(af_suspend), class_getInstanceMethod(urlSessionClass, @selector(af_suspend)));
-            af_swizzleSelector(urlSessionClass, @selector(resume), @selector(af_resume));
-            af_swizzleSelector(urlSessionClass, @selector(suspend), @selector(af_suspend));
-        }
-    });
+    Class urlSessionTaskClass = NSClassFromString(@"NSURLSessionTask");
+    af_addMethod(urlSessionTaskClass, @selector(af_resume),  class_getInstanceMethod(urlSessionTaskClass, @selector(af_resume)));
+    af_addMethod(urlSessionTaskClass, @selector(af_suspend), class_getInstanceMethod(urlSessionTaskClass, @selector(af_suspend)));
+    af_swizzleSelector(urlSessionTaskClass, @selector(resume), @selector(af_resume));
+    af_swizzleSelector(urlSessionTaskClass, @selector(suspend), @selector(af_suspend));
 }
 @end
 
